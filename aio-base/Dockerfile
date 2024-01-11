@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk8 as builder
+FROM adoptopenjdk/openjdk11 as builder
 
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
@@ -15,14 +15,14 @@ ENV CATALINA_HOME /usr/local/tomcat
 ENV CATALINA_BASE /var/lib/tomcat
 
 RUN set -ex \
-	&& export TOMCAT_MAJOR="8" \
-	&& export TOMCAT_VERSION="8.5.38" \
-	&& export TOMCAT_ESUM="3a3e624014faf87091e6dbb8bad13c68240955d62301d22cf3d75a1766859dd97500d6850fbd5d3dc012f08f9301eb24c24fa7175bcca616767fa5c18875072d" \
+	&& export TOMCAT_MAJOR="9" \
+	&& export TOMCAT_VERSION="9.0.85" \
+	&& export TOMCAT_ESUM="06e239d15ff7b72017c1d0752ddb1be4651374f7c1391631ec5619f4981cb2911267bc6b044d6c71a2a74738f70d433b96418951439848121f1d874862ddd3de" \
 	&& export TOMCAT_PKG="apache-tomcat-$TOMCAT_VERSION.tar.gz" \
 	&& mkdir -p $CATALINA_HOME \
 	&& mkdir -p $CATALINA_BASE \
 	&& cd $CATALINA_HOME \
-	&& curl -L -O "https://www.apache.org/dyn/closer.cgi?action=download&filename=tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/$TOMCAT_PKG" \
+	&& curl -L -O "https://dlcdn.apache.org/tomcat/tomcat-9/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz" \
 	&& echo "$TOMCAT_ESUM $TOMCAT_PKG" | sha512sum -c - \
 	&& tar -xvf $TOMCAT_PKG --strip-components=1 \
 	&& rm -f $TOMCAT_PKG \
@@ -69,7 +69,7 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM adoptopenjdk/openjdk8
+FROM adoptopenjdk/openjdk11
 LABEL maintainer="Axelor <support@axelor.com>"
 
 RUN set -ex \
@@ -77,17 +77,17 @@ RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg dirmngr apt-transport-https locales \
 	&& apt-key adv --batch --fetch-keys http://nginx.org/keys/nginx_signing.key \
-	&& echo "deb http://nginx.org/packages/mainline/ubuntu/ bionic nginx" >> /etc/apt/sources.list \
+	&& echo "deb http://nginx.org/packages/mainline/ubuntu/ focal nginx" >> /etc/apt/sources.list \
 	&& apt-key adv --batch --fetch-keys https://www.postgresql.org/media/keys/ACCC4CF8.asc \
-	&& echo 'deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
+	&& echo 'deb http://apt.postgresql.org/pub/repos/apt/focal-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
 	&& apt-key adv --batch --fetch-keys https://deb.nodesource.com/gpgkey/nodesource.gpg.key \
-	&& echo 'deb https://deb.nodesource.com/node_8.x bionic main' > /etc/apt/sources.list.d/nodesource.list \
+	&& echo 'deb https://deb.nodesource.com/node_12.lx foca main' > /etc/apt/sources.list.d/nodesource.list \
 	&& apt-key adv --batch --fetch-keys https://dl.yarnpkg.com/debian/pubkey.gpg \
 	&& echo 'deb https://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		supervisor gosu postgresql-9.6 postgresql-contrib-9.6 \
+		supervisor gosu postgresql-12 postgresql-contrib-12 \
 		libapr1 nginx nginx-module-xslt nginx-module-geoip nginx-module-image-filter nginx-module-njs gettext-base \
 		git-core nodejs yarn \
 	&& rm -rf /var/lib/apt/lists/*
@@ -138,14 +138,14 @@ ENV POSTGRES_USER axelor
 ENV POSTGRES_PASSWORD axelor
 ENV POSTGRES_DB axelor
 
-ENV PATH $PATH:/usr/lib/postgresql/9.6/bin
-ENV PGDATA /var/lib/postgresql/9.6/main
+ENV PATH $PATH:/usr/lib/postgresql/12/bin
+ENV PGDATA /var/lib/postgresql/12/main
 
 RUN set -ex \
-	&& echo "host all all all md5" >> /etc/postgresql/9.6/main/pg_hba.conf \
-	&& echo "listen_addresses='localhost'" >> /etc/postgresql/9.6/main/postgresql.conf \
-	&& rm -rf /var/lib/postgresql/9.6/main \
-	&& mkdir -p /var/lib/postgresql/9.6 \
+	&& echo "host all all all md5" >> /etc/postgresql/12/pg_hba.conf \
+	&& echo "listen_addresses='localhost'" >> /etc/postgresql/12/main/postgresql.conf \
+	&& rm -rf /var/lib/postgresql/12/main \
+	&& mkdir -p /var/lib/postgresql/12 \
 	&& chown -R postgres:postgres /var/lib/postgresql
 
 # nginx
