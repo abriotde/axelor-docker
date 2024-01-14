@@ -1,8 +1,10 @@
 FROM eclipse-temurin:11-focal as builder
 
-RUN  apt-get update -y &&  apt-get upgrade -y \
-     &&  apt-get install -y curl dpkg-dev gcc libapr1-dev libssl-dev make \
-     && rm -rf /var/lib/apt/lists/*
+RUN set -ex \
+	&& DEBIAN_FRONTEND=noninteractive apt-get update \
+	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y curl dpkg-dev gcc libapr1-dev libssl-dev make \
+	&& rm -rf /var/lib/apt/lists/*
 
 # jdk
 ENV JAVA_HOME /opt/java/openjdk
@@ -69,13 +71,13 @@ RUN set -ex \
 FROM eclipse-temurin:11-focal
 LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
-RUN  set -ex  \
-        && apt-get update -y && apt-get upgrade -y \
-        && apt-get install -y gnupg dirmngr apt-transport-https locales \
-        && apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter \
-	&& apt-get install -y libnginx-mod-http-geoip2 libnginx-mod-http-image-filter  gettext-base git-core nodejs yarn \ 
+RUN set -ex \
+	&& DEBIAN_FRONTEND=noninteractive apt-get update \
+	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter \
+        && DEBIAN_FRONTEND=noninteractive apt-get install libnginx-mod-http-geoip2 libnginx-mod-http-image-filter  gettext-base git-core nodejs yarn  \
         && rm -rf /var/lib/apt/lists/*
-
+ 
 # update locale
 RUN set -ex && \
 	echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen && \
