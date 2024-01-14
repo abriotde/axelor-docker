@@ -137,14 +137,14 @@ RUN set -ex \
 
 # nginx
 ENV NGINX_HOST localhost
-ENV NGINX_PORT 443
+ENV NGINX_PORT 8443
 
 COPY nginx.conf /etc/nginx/conf.d.templates/
 COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
 
 VOLUME ["/var/lib/tomcat", "/var/lib/postgresql", "/var/log/tomcat", "/var/log/postgresql"]
 
-EXPOSE 80 443 8080 5432
+EXPOSE 88 8443 8880 5432
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && mkdir /docker-entrypoint-initdb.d
