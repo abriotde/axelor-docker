@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
-start_nginx() {
-	local conf=nginx.conf
-	[ -e /etc/nginx/certs/nginx.crt -a \
-	  -e /etc/nginx/certs/nginx.key -a \
-	  -e /etc/nginx/certs/dhparam.pem ] && conf=nginx-ssl.conf
-	envsubst '$NGINX_HOST $NGINX_PORT' < /etc/nginx/conf.d.templates/${conf} > /etc/nginx/conf.d/default.conf
-	service nginx start
-}
+#start_nginx() {
+#	local conf=nginx.conf
+# [ -e /etc/nginx/certs/nginx.crt -a \
+#	  -e /etc/nginx/certs/nginx.key -a \
+#	  -e /etc/nginx/certs/dhparam.pem ] && conf=nginx-ssl.conf
+#	envsubst '$NGINX_HOST $NGINX_PORT' < /etc/nginx/conf.d.templates/${conf} > /etc/nginx/conf.d/default.conf
+#	service nginx start
+#}
 
 start_postgres() {
 
@@ -102,7 +102,7 @@ prepare_app() {
 	( chown -hfR $TOMCAT_USER:adm /var/log/tomcat || exit 0 )
 	( chown -hfR $TOMCAT_USER:$TOMCAT_GROUP $CATALINA_BASE || exit 0 )
 
-	# copy static files in a separate directory for nginx
+	#   copy static files in a separate directory for nginx
 	(
 		cd $CATALINA_BASE/webapps; \
 		[ ! -d static -a -e ROOT.war ] \
@@ -118,7 +118,7 @@ prepare_app() {
 if [ "$1" = "start" ]; then
 	shift
 	prepare_app
-	start_nginx
+	#start_nginx
 	start_postgres
 	start_tomcat
 fi
