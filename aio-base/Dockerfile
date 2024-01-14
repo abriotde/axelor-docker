@@ -69,11 +69,9 @@ RUN set -ex \
 FROM eclipse-temurin:11
 LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
-RUN set -ex \
-	&& DEBIAN_FRONTEND=noninteractive apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg dirmngr apt-transport-https locales \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter nginx-module-geoip nginx-module-image-filter nginx-module-njs gettext-base git-core nodejs yarn \
+RUN  apt-get update -y && apt-get upgrade -y \
+	&& apt-get install -y gnupg dirmngr apt-transport-https locales \
+	&& apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter nginx-module-geoip nginx-module-image-filter nginx-module-njs gettext-base git-core nodejs yarn \
 	&& rm -rf /var/lib/apt/lists/*
 
 # update locale
