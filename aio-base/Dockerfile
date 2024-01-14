@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11 as builder
+FROM eclipse-temurin:11-focal as builder
 
 RUN  apt-get update -y &&  apt-get upgrade -y \
      &&  apt-get install -y curl dpkg-dev gcc libapr1-dev libssl-dev make \
@@ -66,7 +66,7 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM eclipse-temurin:11
+FROM eclipse-temurin:11-focal
 LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
 RUN  apt-get update -y && apt-get upgrade -y && \
