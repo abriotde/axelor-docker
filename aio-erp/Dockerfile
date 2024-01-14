@@ -5,7 +5,7 @@ WORKDIR /app/src
 
 RUN \
   set -ex && \ 
-  rm -rf axelor-erp \
+  rm -rf axelor-erp && \
   git clone https://github.com/axelor/abs-webapp.git axelor-erp && \
   sed -e 's|git@github.com:|https://github.com/|' -i axelor-erp/.gitmodules && \
   cd axelor-erp && \
