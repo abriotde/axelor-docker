@@ -136,10 +136,10 @@ RUN set -ex \
 	&& chown -R postgres:postgres /var/lib/postgresql
 
 # nginx
-ENV NGINX_HOST localhost
-ENV NGINX_PORT 88
+#ENV NGINX_HOST localhost
+#ENV NGINX_PORT 88
 
-COPY nginx.conf /etc/nginx/conf.d.templates/
+#COPY nginx.conf /etc/nginx/conf.d.templates/
 #COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
 
 VOLUME ["/var/lib/tomcat", "/var/lib/postgresql", "/var/log/tomcat", "/var/log/postgresql"]
