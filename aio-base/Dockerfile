@@ -131,7 +131,7 @@ ENV PGDATA /var/lib/postgresql/12/main
 RUN set -ex \
 	&& echo "host all all all md5" >> /etc/postgresql/12/pg_hba.conf \
 	&& echo "listen_addresses='localhost'" >> /etc/postgresql/12/main/postgresql.conf \
-	# && rm -rf /var/lib/postgresql/12/main \
+	&& rm -rf /var/lib/postgresql/12/main \
 	&& mkdir -p /var/lib/postgresql/12 \
 	&& chown -R postgres:postgres /var/lib/postgresql
 
@@ -140,11 +140,11 @@ ENV NGINX_HOST localhost
 ENV NGINX_PORT 8443
 
 COPY nginx.conf /etc/nginx/conf.d.templates/
-COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
+#COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
 
 VOLUME ["/var/lib/tomcat", "/var/lib/postgresql", "/var/log/tomcat", "/var/log/postgresql"]
 
-EXPOSE 88 8443 8880 5432
+EXPOSE 88 8880 5432
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && mkdir /docker-entrypoint-initdb.d
