@@ -4,11 +4,11 @@ services:
     image: axelor/aio-erp
     build: .
     ports:
-      - 8080:80
+      - 8088:88
       
     environment:
       - NGINX_HOST=localhost
-      - NGINX_PORT=80
+      - NGINX_PORT=88
     volumes:
       # - ./certs:/etc/nginx/certs:ro
       - ./volumes/var/lib/postgresql:/var/lib/postgresql
