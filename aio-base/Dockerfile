@@ -137,7 +137,7 @@ RUN set -ex \
 
 # nginx
 ENV NGINX_HOST localhost
-ENV NGINX_PORT 8443
+ENV NGINX_PORT 88
 
 COPY nginx.conf /etc/nginx/conf.d.templates/
 #COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
