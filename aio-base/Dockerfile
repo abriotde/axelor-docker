@@ -69,9 +69,11 @@ RUN set -ex \
 FROM eclipse-temurin:11-focal
 LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
-RUN  apt-get update -y && apt-get upgrade -y && \
-     apt-get install -y gnupg dirmngr apt-transport-https locales \
-     apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter nginx-module-geoip nginx-module-image-filter nginx-module-njs gettext-base git-core nodejs yarn \     rm -rf /var/lib/apt/lists/*
+RUN  set -ex &&  \
+        apt-get update -y && apt-get upgrade -y \
+        apt-get install -y gnupg dirmngr apt-transport-https locales \
+        apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter nginx-module-geoip nginx-module-image-filter nginx-module-njs gettext-base git-core nodejs yarn \ 
+        rm -rf /var/lib/apt/lists/*
 
 # update locale
 RUN set -ex && \
