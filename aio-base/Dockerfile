@@ -1,4 +1,5 @@
 FROM eclipse-temurin:11-focal as builder
+LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
 
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
