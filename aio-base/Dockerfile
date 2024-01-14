@@ -76,7 +76,7 @@ RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter \
-        && DEBIAN_FRONTEND=noninteractive apt-get install libnginx-mod-http-geoip2 libnginx-mod-http-image-filter  gettext-base git-core nodejs yarn  \
+        && DEBIAN_FRONTEND=noninteractive apt-get install -y libnginx-mod-http-geoip2 libnginx-mod-http-image-filter  gettext-base git-core nodejs yarn  \
         && rm -rf /var/lib/apt/lists/*
  
 # update locale
