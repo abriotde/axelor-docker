@@ -1,10 +1,8 @@
 FROM eclipse-temurin:11 as builder
 
-RUN set -ex \
-	&& DEBIAN_FRONTEND=noninteractive apt-get update -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y curl dpkg-dev gcc libapr1-dev libssl-dev make \
-	&& rm -rf /var/lib/apt/lists/*
+RUN  apt-get update -y &&  apt-get upgrade -y \
+     &&  apt-get install -y curl dpkg-dev gcc libapr1-dev libssl-dev make \
+     && rm -rf /var/lib/apt/lists/*
 
 # jdk
 ENV JAVA_HOME /opt/java/openjdk
