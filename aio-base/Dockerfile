@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11 as builder
+FROM eclipse-temurin:11 as builder
 
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
@@ -69,8 +69,8 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM adoptopenjdk/openjdk11
-LABEL maintainer="Axelor <support@axelor.com>"
+FROM eclipse-temurin:11
+LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
@@ -81,7 +81,7 @@ RUN set -ex \
 	&& apt-key adv --batch --fetch-keys https://www.postgresql.org/media/keys/ACCC4CF8.asc \
 	&& echo 'deb http://apt.postgresql.org/pub/repos/apt/focal-pgdg main' > /etc/apt/sources.list.d/pgdg.list \
 	&& apt-key adv --batch --fetch-keys https://deb.nodesource.com/gpgkey/nodesource.gpg.key \
-	&& echo 'deb https://deb.nodesource.com/node_12.lx foca main' > /etc/apt/sources.list.d/nodesource.list \
+	&& echo 'deb https://deb.nodesource.com/node_12.lx focal main' > /etc/apt/sources.list.d/nodesource.list \
 	&& apt-key adv --batch --fetch-keys https://dl.yarnpkg.com/debian/pubkey.gpg \
 	&& echo 'deb https://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
