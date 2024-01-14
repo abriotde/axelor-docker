@@ -72,7 +72,8 @@ LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 RUN  set -ex  \
         && apt-get update -y && apt-get upgrade -y \
         && apt-get install -y gnupg dirmngr apt-transport-https locales \
-        && apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter libnginx-mod-http-geoip2  libnginx-mod-http-image-filter libnginx-mod-http-js gettext-base git-core nodejs yarn \ 
+        && apt-get install -y supervisor gosu postgresql-12 libapr1 nginx libnginx-mod-http-xslt-filter
+	&& apt-get install -y libnginx-mod-http-geoip2 libnginx-mod-http-image-filter  gettext-base git-core nodejs yarn \ 
         && rm -rf /var/lib/apt/lists/*
 
 # update locale
