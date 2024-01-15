@@ -11,7 +11,7 @@ Install `docker` & `docker-compose` as per the official [docker documentation][d
 You can build the base image like this:
 
 ```sh
-docker build -t axelor/aio-base .
+docker build -t ceeedev/aio-base .
 ```
 
 ## Run app
