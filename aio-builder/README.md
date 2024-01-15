@@ -10,20 +10,20 @@ so that we can rebuild the ERP with same dependencies.
 ## Build Image
 
 ```sh
-$ docker build -t axelor/aio-builder .
+$ docker build -t ceeedev/aio-builder .
 ```
 
 ## Build App
 
 ```sh
-$ docker run --rm -it -v /path/to/app-source:/src -w /src axelor/aio-builder \
+$ docker run --rm -it -v /path/to/app-source:/src -w /src ceeedev/aio-builder \
 	./gradlew -x test build
 ```
 
 For example, to build Axelor ERP:
 
 ```
-$ docker run --rm -it -v `pwd`/abs-webapp:/src -w /src axelor/aio-builder \
+$ docker run --rm -it -v `pwd`/abs-webapp:/src -w /src ceeedev/aio-builder \
 	./gradlew -x test build
 ```
 
