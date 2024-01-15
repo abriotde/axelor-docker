@@ -1,4 +1,4 @@
-FROM ceeedev/openjdk-11-jammy as builder
+FROM mcr.microsoft.com/openjdk/jdk:11-ubuntu as builder
 LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
 
 RUN set -ex \
@@ -69,7 +69,7 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM  ceeedev/openjdk-11-jammy
+FROM  mcr.microsoft.com/openjdk/jdk:11-ubuntu 
 LABEL maintainer="Chinthaka Deshapriyiya  <axcelor@ceee.dev>"
 
 RUN set -ex \
