@@ -10,21 +10,21 @@ It assumes you have Docker installed on your system.
 
 ```sh
 $ cd aio-base
-$ docker build -t axelor/aio-base .
+$ docker build -t ceeedev/aio-base .
 ```
 
 ### Build builder image
 
 ```sh
 $ cd aio-builder
-$ docker build -t axelor/aio-builder .
+$ docker build -t ceeedev/aio-builder .
 ```
 
 ### Build app image
 
 ```sh
 $ cd aio-erp
-$ docker build -t axelor/aio-erp .
+$ docker build -t ceeedev/aio-erp .
 ```
 
 ## Run app container
@@ -32,7 +32,7 @@ $ docker build -t axelor/aio-erp .
 Once app image is built, you can run it like this:
 
 ```sh
-$ docker run -it -p 8080:80 axelor/aio-erp
+$ docker run -it -p 8080:80 ceeedev/aio-erp
 ```
 
 Once app completes database initialization, it can be access at: http://localhost:8080
