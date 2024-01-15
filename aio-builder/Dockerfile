@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-focal
+FROM ceeedev/openjdk-11-focal
 LABEL maintainer="Chinthaka <axcelor@ceee.dev>"
  
 RUN set -ex \
