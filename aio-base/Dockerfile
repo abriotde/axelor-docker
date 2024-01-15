@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-focal as builder
+FROM eclipse-temurin:11-jdk-focal as builder
 LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
 
 RUN set -ex \
@@ -69,7 +69,7 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM eclipse-temurin:11-focal
+FROM  eclipse-temurin:11-jdk-focal
 LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
 RUN set -ex \
@@ -136,15 +136,15 @@ RUN set -ex \
 	&& chown -R postgres:postgres /var/lib/postgresql
 
 # nginx
-#ENV NGINX_HOST localhost
-#ENV NGINX_PORT 88
+ENV NGINX_HOST localhost
+ENV NGINX_PORT 443
 
-#COPY nginx.conf /etc/nginx/conf.d.templates/
-#COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
+COPY nginx.conf /etc/nginx/conf.d.templates/
+COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
 
 VOLUME ["/var/lib/tomcat", "/var/lib/postgresql", "/var/log/tomcat", "/var/log/postgresql"]
 
-EXPOSE  8080 5432
+EXPOSE  80 443 8080 5432
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh && mkdir /docker-entrypoint-initdb.d
