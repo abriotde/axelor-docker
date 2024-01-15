@@ -19,7 +19,7 @@ RUN \
   ./gradlew --no-daemon -x test npm-build build
 
 FROM axelor/aio-base
-LABEL maintainer="Chinthaka Deshapriya <axcelor@ceee.dev>"
+LABEL maintainer="Chinthaka Deshapriya <axelor@ceee.dev>"
 
 COPY --from=builder /app/src/axelor-erp/build/libs/axelor-erp-*.war $CATALINA_BASE/webapps/ROOT.war
 
