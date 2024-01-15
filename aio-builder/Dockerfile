@@ -1,4 +1,4 @@
-FROM ceeedev/openjdk-11-jammy
+FROM  mcr.microsoft.com/openjdk/jdk:11-ubuntu 
 LABEL maintainer="Chinthaka <axcelor@ceee.dev>"
  
 RUN set -ex \
@@ -15,7 +15,8 @@ RUN set -ex && \
 ENV LANG en_US.utf8
 
 # jdk
-ENV JAVA_HOME /opt/java/openjdk
+ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 RUN set -ex \
 	&& update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 \
