@@ -5,13 +5,13 @@ The Dockerfile to build All-in-One docker image of Axelor ERP.
 ## Build Image
 
 ```sh
-$ docker build -t axelor/aio-erp .
+$ docker build -t ceeedev/aio-erp .
 ```
 
 ## Run app container
 
 ```sh
-$ docker run -it -p 8080:80 axelor/aio-erp
+$ docker run -it -p 8080:80 ceeedev/aio-erp
 ```
 
 ## Run with SSL
