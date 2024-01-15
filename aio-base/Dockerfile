@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-jdk-focal as builder
+FROM ceeedev/openjdk-11-focal as builder
 LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
 
 RUN set -ex \
@@ -69,7 +69,7 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM  eclipse-temurin:11-jdk-focal
+FROM  ceeedev/openjdk-11-focal
 LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
 
 RUN set -ex \
