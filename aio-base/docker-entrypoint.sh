@@ -2,13 +2,13 @@
 set -e
 
 start_nginx() {
-      local conf=nginx.conf
-          [ -e /etc/nginx/certs/nginx.crt -a \
-            -e /etc/nginx/certs/nginx.key -a \
-            -e /etc/nginx/certs/dhparam.pem ] && conf=nginx-ssl.conf
-               envsubst '$NGINX_HOST $NGINX_PORT' < /etc/nginx/conf.d.templates/${conf} > /etc/nginx/conf.d/default.conf
-        service nginx start
-      }
+	local conf=nginx.conf
+	[ -e /etc/nginx/certs/nginx.crt -a \
+	  -e /etc/nginx/certs/nginx.key -a \
+	  -e /etc/nginx/certs/dhparam.pem ] && conf=nginx-ssl.conf
+	envsubst '$NGINX_HOST $NGINX_PORT' < /etc/nginx/conf.d.templates/${conf} > /etc/nginx/conf.d/default.conf
+	service nginx start
+}
 
 start_postgres() {
  
