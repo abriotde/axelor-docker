@@ -27,7 +27,7 @@ docker run -it --name axelor-demo \
 	-v `pwd`/volumes/var/lib/postgresql:/var/lib/postgresql \
 	-v `pwd`/volumes/var/lib/tomcat:/var/lib/tomcat \
 	-v `pwd`/axelor-demo.war:/var/lib/tomcat/webapps/ROOT.war:ro \
-	axelor/aio-base
+	ceeedev/aio-base
 ```
 
 The data will be stored under `volumes` directory.
@@ -54,7 +54,7 @@ docker run -it --name axelor-demo \
 	-v `pwd`/volumes/var/lib/postgresql:/var/lib/postgresql \
 	-v `pwd`/volumes/var/lib/tomcat:/var/lib/tomcat \
 	-v `pwd`/axelor-demo.war:/var/lib/tomcat/webapps/ROOT.war:ro \
-	axelor/aio-base
+	ceeedev/aio-base
 ```
 
 ## Next?
