@@ -88,6 +88,8 @@ ENV LANG en_US.utf8
 
 # jdk
 ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
+
 # tomcat
 ENV TOMCAT_USER tomcat
 ENV TOMCAT_GROUP tomcat
