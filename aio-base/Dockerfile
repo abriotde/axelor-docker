@@ -1,4 +1,4 @@
-FROM ceeedev/openjdk-11-focal as builder
+FROM ceeedev/openjdk-11-jammy as builder
 LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
 
 RUN set -ex \
@@ -69,8 +69,8 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM  ceeedev/openjdk-11-focal
-LABEL maintainer="Chinthaka  <axcelor@libresoft.io>"
+FROM  ceeedev/openjdk-11-jammy
+LABEL maintainer="Chinthaka Deshapriyiya  <axcelor@ceee.dev>"
 
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
@@ -125,14 +125,14 @@ ENV POSTGRES_USER axelor
 ENV POSTGRES_PASSWORD axelor
 ENV POSTGRES_DB axelor
 
-ENV PATH $PATH:/usr/lib/postgresql/12/bin
-ENV PGDATA /var/lib/postgresql/12/main
+ENV PATH $PATH:/usr/lib/postgresql/14/bin
+ENV PGDATA /var/lib/postgresql/14/main
 
 RUN set -ex \
-	&& echo "host all all all md5" >> /etc/postgresql/12/pg_hba.conf \
-	&& echo "listen_addresses='localhost'" >> /etc/postgresql/12/main/postgresql.conf \
-	&& rm -rf /var/lib/postgresql/12/main \
-	&& mkdir -p /var/lib/postgresql/12 \
+	&& echo "host all all all md5" >> /etc/postgresql/14/pg_hba.conf \
+	&& echo "listen_addresses='localhost'" >> /etc/postgresql/14/main/postgresql.conf \
+	&& rm -rf /var/lib/postgresql/14/main \
+	&& mkdir -p /var/lib/postgresql/14 \
 	&& chown -R postgres:postgres /var/lib/postgresql
 
 # nginx
