@@ -21,6 +21,8 @@ RUN \
 FROM tomcat:9-jdk11-temurin-jammy
 
 ENV CATALINA_HOME /usr/local/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
+
 LABEL maintainer="Chinthaka Deshapriya <axelor@ceee.dev>"
 
 COPY --from=builder /app/src/open-suite-webapp/build/libs/open-suite-webapp*.war $CATALINA_HOME/webapps/ROOT.war
