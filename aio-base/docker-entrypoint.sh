@@ -110,7 +110,7 @@ prepare_app() {
 			&& cd static \
 			&& jar xf ../ROOT.war css js img ico lib dist partials \
 			&& cd .. \
-			&& chown -R tomcat:nginx static;
+			&& chown -R tomcat:www-data static;
 		exit 0;
 	)
 }
