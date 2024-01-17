@@ -85,10 +85,10 @@ prepare_app() {
 	(
 		cd $CATALINA_BASE; \
 		[ ! -e axelor-config.properties -a -e webapps/ROOT.war ] \
-			&& jar xf webapps/ROOT.war WEB-INF/classes/application.properties \
-			&& mv WEB-INF/classes/application.properties . \
+			&& jar xf webapps/ROOT.war WEB-INF/classes/axelor-config.properties \
+			&& mv WEB-INF/classes/axelor-config.properties . \
 			&& rm -rf WEB-INF;
-		[ ! -e app.properties -a -e aaxelor-config.properties ] \
+		[ ! -e app.properties -a -e axelor-config.properties ] \
 			&& cp axelor-config.properties app.properties \
 			&& echo >> app.properties \
 			&& echo "application.mode = prod" >> app.properties \
