@@ -22,7 +22,7 @@ RUN \
   set -ex && \
   mkdir -p /app/src && cd /app/src && \
   git clone https://github.com/axelor/axelor-open-platform.git && \
-  cd axelor-open-platform.git && \
+  cd axelor-open-platform && \
   ./gradlew --no-daemon -x test build
 
 RUN \
