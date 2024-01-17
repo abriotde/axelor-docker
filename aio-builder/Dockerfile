@@ -15,7 +15,7 @@ RUN set -ex && \
 ENV LANG en_US.utf8
 
 # jdk
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 #RUN set -ex \
