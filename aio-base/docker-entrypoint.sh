@@ -84,12 +84,12 @@ prepare_app() {
 	# prepare config file and save it as app.properties
 	(
 		cd $CATALINA_BASE; \
-		[ ! -e application.properties -a -e webapps/ROOT.war ] \
+		[ ! -e axelor-config.properties -a -e webapps/ROOT.war ] \
 			&& jar xf webapps/ROOT.war WEB-INF/classes/application.properties \
 			&& mv WEB-INF/classes/application.properties . \
 			&& rm -rf WEB-INF;
-		[ ! -e app.properties -a -e application.properties ] \
-			&& cp application.properties app.properties \
+		[ ! -e app.properties -a -e aaxelor-config.properties ] \
+			&& cp axelor-config.properties app.properties \
 			&& echo >> app.properties \
 			&& echo "application.mode = prod" >> app.properties \
 			&& echo "db.default.url = jdbc:postgresql://localhost:5432/$POSTGRES_DB" >> app.properties \
