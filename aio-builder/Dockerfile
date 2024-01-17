@@ -36,7 +36,8 @@ RUN \
   git submodule update && \
   git submodule foreach git checkout master && \
   git submodule foreach git pull origin master && \
-  sed -e 's|^application.theme.*|application.theme = modern|g' -i src/main/resources//axelor-config.properties && \
+  sed -e 's|^application.locale.*|application.locale = en|g' -i src/main/resources/axelor-config.properties && \
+  sed -e 's|^application.mode.*|application.mode = prod|g' -i src/main/resources/axelor-config.properties && \
   ./gradlew --no-daemon -x test npm-build build && \
   rm -rf /app
 
