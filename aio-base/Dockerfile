@@ -1,6 +1,6 @@
 FROM ubuntu:jammy as builder
 LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
-dj
+
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
@@ -8,7 +8,7 @@ RUN set -ex \
 	&& rm -rf /var/lib/apt/lists/*
 
 # jdk
-ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 # tomcat
@@ -81,7 +81,7 @@ RUN set -ex \
         && rm -rf /var/lib/apt/lists/*
 
 # jdk
-ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 # update locale
