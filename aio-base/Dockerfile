@@ -1,10 +1,10 @@
-FROM mcr.microsoft.com/openjdk/jdk:11-ubuntu as builder
+FROM ubuntu:jammy as builder
 LABEL maintainer="Chinthaka <axcelor@libresoft.io>"
-
+dj
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y curl dpkg-dev gcc libapr1-dev libssl-dev make \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y curl dpkg-dev openjdk-11-jdk gcc libapr1-dev libssl-dev make \
 	&& rm -rf /var/lib/apt/lists/*
 
 # jdk
@@ -70,16 +70,20 @@ RUN set -ex \
 
 ## end of builder stage
 
-FROM  mcr.microsoft.com/openjdk/jdk:11-ubuntu 
+FROM  ubuntu:jammy
 LABEL maintainer="Chinthaka Deshapriyiya  <axcelor@ceee.dev>"
 
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y supervisor gosu postgresql-14 libapr1 nginx libnginx-mod-http-xslt-filter \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-11-jdk supervisor gosu postgresql-14 libapr1 nginx libnginx-mod-http-xslt-filter \
         && DEBIAN_FRONTEND=noninteractive apt-get install -y libnginx-mod-http-geoip2 libnginx-mod-http-image-filter  gettext-base git-core nodejs yarn  \
         && rm -rf /var/lib/apt/lists/*
- 
+
+# jdk
+ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
+
 # update locale
 RUN set -ex && \
 	echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen && \
