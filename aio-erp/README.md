@@ -17,7 +17,7 @@ $ docker run -it -p 8080:80 ceeedev/aio-erp
 ## Run with SSL
 
 ```sh
-$ docker run -it -v /path/to/your/certs:/etc/nginx/certs -p 80:80 -p 443:443 axelor/aio-erp
+$ docker run -it -v ./certs:/etc/nginx/certs -p 80:80 -p 443:443 axelor/aio-erp
 ```
 
 The `certs` directory should contain certificates with following names:
