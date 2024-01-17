@@ -16,11 +16,13 @@ RUN \
   git submodule foreach git pull origin master && \
   sed -e 's|^application.locale.*|application.locale = en|g' -i src/main/resources/axelor-config.properties && \
   sed -e 's|^application.mode.*|application.mode = prod|g' -i src/main/resources/axelor-config.properties && \
-  ./gradlew --no-daemon -x test npm-build build && 
+  ./gradlew --no-daemon -x test npm-build build 
 
-FROM ceeedev/aio-base
+FROM tomcat:9-jdk11-temurin-jammy
+
+ENV CATALINA_HOME /usr/local/tomcat
 LABEL maintainer="Chinthaka Deshapriya <axelor@ceee.dev>"
 
-COPY --from=builder /app/src/open-suite-webapp/build/libs/open-suite-webapp*.war $CATALINA_BASE/webapps/ROOT.war
+COPY --from=builder /app/src/open-suite-webapp/build/libs/open-suite-webapp*.war $CATALINA_HOME/webapps/ROOT.war
 
 CMD ["start"]
