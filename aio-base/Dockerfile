@@ -141,6 +141,10 @@ RUN set -ex \
 ENV NGINX_HOST localhost
 ENV NGINX_PORT 443
 
+RUN mkdir -p /etc/nginx/conf.d
+RUN mkdir -p /etc/nginx/certs
+RUN mkdir -p /etc/nginx/conf.d.templates
+
 COPY nginx.conf /etc/nginx/conf.d.templates/
 COPY nginx-ssl.conf /etc/nginx/conf.d.templates/
 
