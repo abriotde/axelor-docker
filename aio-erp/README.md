@@ -17,7 +17,7 @@ $ docker run -it -p 8080:80 ceeedev/aio-erp
 ## Run with SSL
 
 ```sh
-$ docker run -it -v ./certs:/etc/nginx/certs -p 80:80 -p 443:443 axelor/aio-erp
+$ docker run -it -v ./certs:/etc/nginx/certs -p 80:80 -p 443:443 ceeedev/aio-erp
 ```
 
 The `certs` directory should contain certificates with following names:
@@ -28,11 +28,11 @@ The `certs` directory should contain certificates with following names:
 
 ## Custom app config
 
-The image uses default `application.properties` from ABS source. You can provide your own
+The image uses default `axelor-config.properties` from ABS source. You can provide your own
 configuration file as bellow:
 
 ```sh
-$ docker run -it -v /path/to/application.properties:/application.properties -p 8080:80 axelor/aio-erp
+$ docker run -it -v /path/to/axelor-config.properties:/axelor-config.properties -p 8080:80 axelor/aio-erp
 ```
 
 ## Other Options
