@@ -1,11 +1,11 @@
-FROM  mcr.microsoft.com/openjdk/jdk:11-ubuntu 
+FROM ubuntu:jammy 
 LABEL maintainer="Chinthaka <axcelor@ceee.dev>"
  
 RUN set -ex \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg dirmngr apt-transport-https locales \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -y git-core nodejs yarn \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-11-jdk git-core nodejs yarn \
 	&& rm -rf /var/lib/apt/lists/*
 
 # update locale
@@ -15,7 +15,7 @@ RUN set -ex && \
 ENV LANG en_US.utf8
 
 # jdk
-ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 #RUN set -ex \
