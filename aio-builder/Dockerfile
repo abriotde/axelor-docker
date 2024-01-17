@@ -28,7 +28,7 @@ RUN \
 RUN \
   set -ex && \
   cd /app/src && \
-  git clone git@github.com:axelor/open-suite-webapp.git && \
+  git clone https://github.com/axelor/open-suite-webapp.git && \
   sed -e 's|git@github.com:|https://github.com/|' -i open-suite-webapp/.gitmodules && \
   cd open-suite-webapp && \
   git checkout master && \
