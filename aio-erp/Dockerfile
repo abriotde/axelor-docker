@@ -27,4 +27,9 @@ LABEL maintainer="Chinthaka Deshapriya <axelor@ceee.dev>"
 
 COPY --from=builder /app/src/open-suite-webapp/build/libs/open-suite-webapp*.war $CATALINA_HOME/webapps/ROOT.war
 
-CMD ["start"]
+EXPOSE 8080
+
+# upstream eclipse-temurin-provided entrypoint script caused https://github.com/docker-library/tomcat/issues/77 to come back as https://github.com/docker-library/tomcat/issues/302; use "/entrypoint.sh" at your own risk
+ENTRYPOINT []
+
+CMD ["catalina.sh", "run"]
