@@ -131,7 +131,7 @@ ENV PATH $PATH:/usr/lib/postgresql/14/bin
 ENV PGDATA /var/lib/postgresql/14/main
 
 RUN set -ex \
-	&& echo "host all all all md5" >> /etc/postgresql/14/pg_hba.conf \
+	&& echo "host all all all md5" >> /etc/postgresql/14/main/pg_hba.conf \
 	&& echo "listen_addresses='localhost'" >> /etc/postgresql/14/main/postgresql.conf \
 	&& rm -rf /var/lib/postgresql/14/main \
 	&& mkdir -p /var/lib/postgresql/14 \
