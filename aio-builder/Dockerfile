@@ -18,10 +18,10 @@ ENV LANG en_US.utf8
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
-#RUN set -ex \
-#	&& update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 \
-#	&& update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000 \
-#	&& update-alternatives --install /usr/bin/jar jar $JAVA_HOME/bin/jar 20000
+RUN set -ex \
+	&& update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 \
+	&& update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000 \
+	&& update-alternatives --install /usr/bin/jar jar $JAVA_HOME/bin/jar 20000
 
 RUN \
   set -ex && \
