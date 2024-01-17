@@ -8,7 +8,7 @@ RUN set -ex \
 	&& rm -rf /var/lib/apt/lists/*
 
 # jdk
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 # tomcat
@@ -81,7 +81,7 @@ RUN set -ex \
         && rm -rf /var/lib/apt/lists/*
 
 # jdk
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 # update locale
@@ -89,10 +89,6 @@ RUN set -ex && \
 	echo 'en_GB.UTF-8 UTF-8' >> /etc/locale.gen && \
 	echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
 ENV LANG en_US.utf8
-
-# jdk
-ENV JAVA_HOME /usr/lib/jvm/msopenjdk-11-amd64
-ENV PATH "${JAVA_HOME}/bin:${PATH}"
 
 # tomcat
 ENV TOMCAT_USER tomcat
